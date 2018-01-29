@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:gophers/archive && \
     apt-get update && \
-    apt-get install -y golang-1.9-go autoconf git libio-captureoutput-perl python python-pip protobuf-compiler && \
+    apt-get install -y curl golang-1.9-go autoconf git libio-captureoutput-perl python python-pip protobuf-compiler && \
     rm -rf /var/lib/apt/lists/*
 
 # install ninka
@@ -22,7 +22,8 @@ RUN mkdir /ninka && \
 # install scancode
 RUN pip install scancode-toolkit
 
-
+# install dgraph
+RUN curl https://get.dgraph.io -sSf | bash
 
 # install qmstr
 RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
@@ -30,5 +31,9 @@ RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
     go get github.com/QMSTR/qmstr/cmd/qmstr-client
 
 EXPOSE 50051
+# dgraph ratel web ui
+EXPOSE 8081
 
-CMD ["/go/bin/qmstr-master", "-v"]
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
