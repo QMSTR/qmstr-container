@@ -27,7 +27,9 @@ RUN curl https://get.dgraph.io -sSf | bash
 
 # install go deps
 RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
-    go get github.com/dgraph-io/dgraph/client
+    go get github.com/dgraph-io/dgraph/client && \
+    go get github.com/spf13/pflag
+
 
 EXPOSE 50051
 # dgraph ratel web ui
