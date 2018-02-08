@@ -26,9 +26,7 @@ RUN pip install scancode-toolkit
 RUN curl https://get.dgraph.io -sSf | bash
 
 # install qmstr
-RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
-    (go get github.com/QMSTR/qmstr/cmd/qmstr-master || go generate github.com/QMSTR/qmstr/cmd/qmstr-master; go get github.com/QMSTR/qmstr/cmd/qmstr-master) && \
-    go get github.com/QMSTR/qmstr/cmd/qmstr-client
+RUN curl https://github.com/QMSTR/qmstr/raw/master/install.sh -sSfL | bash
 
 EXPOSE 50051
 # dgraph ratel web ui
