@@ -12,7 +12,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # install golang tools
-RUN go get -u github.com/golang/protobuf/protoc-gen-go
+RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
     go get -u github.com/golang/dep/cmd/dep
 
 COPY build.sh /build.sh
