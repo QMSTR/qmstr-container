@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:gophers/archive && \
     apt-get update && \
-    apt-get install -y curl golang-1.9-go git protobuf-compiler && \
+    apt-get install -y golang-1.9-go git protobuf-compiler && \
     rm -rf /var/lib/apt/lists/*
 
 # install golang tools
