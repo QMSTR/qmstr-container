@@ -17,4 +17,4 @@ RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
 
 COPY build.sh /build.sh
 RUN chmod +x /build.sh
-CMD build.sh
+CMD /build.sh
