@@ -33,7 +33,7 @@ RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
 
 EXPOSE 50051
 # dgraph ratel web ui
-EXPOSE 8081
+EXPOSE 8000
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
