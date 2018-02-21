@@ -2,6 +2,7 @@ FROM ubuntu:17.10
 
 ENV GOPATH /go
 ENV PATH ${GOPATH}/bin:/usr/lib/go-1.9/bin:$PATH
+ENV DLVPORT 2345
 
 # install golang 1.9
 RUN apt-get update && \
@@ -28,12 +29,15 @@ RUN curl https://get.dgraph.io -sSf | bash
 # install go deps
 RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
     go get github.com/dgraph-io/dgraph/client && \
+    go get gopkg.in/yaml.v2 && \
+    go get -u github.com/derekparker/delve/cmd/dlv && \
     go get github.com/spf13/pflag
 
 
 EXPOSE 50051
 # dgraph ratel web ui
 EXPOSE 8000
+EXPOSE ${DLVPORT}
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
